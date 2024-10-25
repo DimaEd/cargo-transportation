@@ -5,11 +5,12 @@ import com.ednach.customerservice.dto.responseCustomerDto.ResponseCustomerDto;
 import com.ednach.customerservice.mapper.CustomerMapper;
 import com.ednach.customerservice.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Rest
+@RestController
 @RequestMapping("/customers")
 public class CustomerController {
     @Autowired
@@ -18,7 +19,7 @@ public class CustomerController {
     @Autowired
     private CustomerMapper mapper;
 
-    @GetMapp
+    @GetMapping
     public List<ResponseCustomerDto> getAllUsers() {
         return customerService.getAllUser().stream()
                 .map(user -> mapper.getResponseUserDto(user)).collect(Collectors.toList());
